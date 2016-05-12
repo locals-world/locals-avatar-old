@@ -1,0 +1,185 @@
+<!-- A-Labs -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animation.html">
+
+
+<dom-module id="labs002-avatar-snitpages">
+  <style>
+
+      :host {
+        display: block;
+      --this-snitcolor: var(--primary-purple);
+        height: 100%;
+        width: 100%;
+
+      }
+
+
+      neon-animated-pages {
+        height: 100%;
+      }
+
+      .svgcontainer {
+        width: 100%;
+        height: 100%;
+      }
+      .svgcontainer img {
+        width: 100%;
+        height: 100%;
+      }
+      .snitcolor {
+        fill: var(--this-snitcolor);
+      } 
+
+
+
+
+  </style>
+  <template>
+
+
+      <neon-animated-pages id="snitpages" selected="{{selected}}"  entry-animation="{{SnitEntry}}" exit-animation="{{SnitExit}}">
+
+
+
+          <!-- 0 -->
+          <neon-animatable>
+          </neon-animatable>
+
+          <!-- 1 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit1-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+
+         <!-- 2 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit3-04.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+   
+          <!-- 3 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit3-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+
+
+          <!-- 4 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit4-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+
+         <!-- 5 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit5-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+   
+          <!-- 6 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit6-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+      
+          <!-- 7 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/avatarsnit7-08.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+
+          <!-- 7 -->
+          <neon-animatable>
+            <div class="svgcontainer">
+              <img src="images/avatar/jenny_snit.png">
+            </div>
+          </neon-animatable>
+          <!-- -->
+      
+    </neon-animated-pages>
+
+
+
+
+
+
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'labs002-avatar-snitpages',
+
+      behaviors: [
+      Polymer.NeonAnimatableBehavior
+      ],
+
+      properties: {
+        selected: {
+          type: Number,
+          notify: true
+        },
+
+        color: {
+          type: String,
+          value: '',
+          observer: "_Watchit"
+        },
+
+
+        nrofitems: {
+          type: Number,
+          value: 7,
+          notify: true
+        }
+      },
+
+      ready: function(){
+      },
+
+
+      _Watchit: function(){
+      this.customStyle['--this-snitcolor'] = this.color;
+      this.updateStyles(); 
+      }
+
+
+
+    });
+  })();
+  </script>
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

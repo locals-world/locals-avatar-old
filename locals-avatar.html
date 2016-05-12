@@ -8,13 +8,14 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
 
 <!--
 An element providing a solution to no problem in particular.
 
 Example:
 
-    <locals-avatar></locals-avatar>
+    <locals-avatar modus="view"></locals-avatar>
 
 @group Seed Elements
 @element locals-avatar
@@ -28,23 +29,311 @@ Example:
       :host {
         display: block;
         box-sizing: border-box;
+        height: 400px;
+        width: 400px;
       }
-  
-      .author img {
-        display: block;
-        float: left;
-        margin-right: 5px;
-        max-height: 100px;
-        max-width: 100px;
+
+      .svgcontainer {
+        width: 400px;
+        height: 400px;
       }
+      .svgcontainer img {
+        width: 400px;
+        height: 400px;
+      }
+
+      .avatarcanvas {
+        width: 100%;  
+        background: linear-gradient(to bottom, #a4e5f9 60%, white 40%); 
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+
+      .avatarcontainer {
+      width: 100%;
+      max-width: 400px; 
+      height: 100vw;
+      max-height: 400px; 
+      position: relative;
+      background: linear-gradient(to bottom, #a4e5f9 60%, white 40%); 
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+      }
+    
+      .absolutepos {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        max-height: 400px;    
+        max-width: 400px;    
+      }
+
+      .thumbcontainer {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.1);
+        position: relative;
+        background-color: white;
+      }
+
+      .canvas {
+        height: 100%;
+        width: 100%;
+      }
+
+      .avataredit {
+      width: 100%;
+      background-color: white;
+      padding: 0px 0px 0px 0px;
+    }
+    iron-collapse {
+      width: 100%;
+      @apply(--layout-vertical);
+      @apply(--layout-center); 
+    }
+    .itemselector {
+      width: 100%;
+      background-color: transparent;
+      @apply(--layout-vertical);
+      @apply(--layout-center-center); 
+    }
+    #itemselector {
+      width: 80%;
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-center-center); 
+    }
+    .item {
+      width: 60px;
+      height: 60px;
+      margin: 0px;
+      padding: 0px;
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center); 
+      opacity: 0.5;
+    }
+    .item img {
+      width: 90%;
+      height: 90%;
+      margin: 0px;
+      padding: 0px;
+    }
+    #itemselector .iron-selected {
+      border: 2px solid var(--primary-lightblue);
+      border-radius: 2px;
+      border-radius: 50%;
+      opacity: 1;
+    }
     </style>
-    <h1>&lt;locals-avatar&gt;</h1>
-    <content></content>
-    <p class="author">
-      <img src="{{author.image}}">
-      Cheers,<br/>
-      <span class="name">{{author.name}}</span>
-    </p>
+    <iron-pages attr-for-selected="key" selected="{{modus}}">
+      <section key="view">
+        <div class="canvas layout vertical center-center">
+          <div class="thumbcontainer">
+
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{backing_tile}}"/>
+              </div>
+            </div>
+            
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{body_tile}}"/>
+              </div>
+            </div>
+
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{bottom_tile}}"/>
+              </div>
+            </div>
+
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{top_tile}}"/>
+              </div>
+            </div>
+
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{head_tile}}"/>
+              </div>
+            </div>
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{beard_tile}}"/>
+              </div>
+            </div>
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{face_tile}}"/>
+              </div>
+            </div>
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{glasses_tile}}"/>
+              </div>
+            </div>
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{snit_tile}}"/>
+              </div>
+            </div>
+
+            <div class="absolutepos">
+              <div class="svgcontainer">
+                <img src="{{shoe_tile}}"/>
+              </div>
+            </div>
+
+          </div>
+        </div>  
+      </section>
+
+      <section key="dataview">
+        <h1>DATA VIEW</h1>  
+      </section>
+
+      <section key="avedit">
+         <div class="canvas layout vertical center">
+            <div class="avatarcanvas">
+              <div class="avatarcontainer">
+              <div class="absolutepos">
+                <labs002-avatar-backingpages 
+                  selected="{{backingselected}}"
+                  color="{{backingcolor}}"
+                  nrofitems="{{nrofbacking}}">
+                </labs002-avatar-backingpages>
+              </div>          
+                <div class="absolutepos">
+                  <labs002-avatar-bodypages 
+                    selected="{{lijfselected}}"
+                    color="{{lijfcolor}}">
+                  </labs002-avatar-bodypages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-shoespages 
+                    selected="{{shoesselected}}"
+                    color="{{shoescolor}}"
+                    nrofitems="{{nrofshoes}}">
+                  </labs002-avatar-shoespages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-bottompages 
+                    selected="{{bottomselected}}"
+                    color="{{bottomcolor}}"
+                    nrofitems="{{nrofbottom}}">
+                  </labs002-avatar-bottompages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-toppages 
+                    selected="{{topselected}}"
+                    color="{{topcolor}}"
+                    nrofitems="{{nroftop}}">
+                  </labs002-avatar-toppages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-headpages 
+                    selected="{{headselected}}"
+                    color="{{lijfcolor}}"
+                    nrofitems="{{nrofhead}}">
+                  </labs002-avatar-headpages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-facepages 
+                    selected="{{faceselected}}"
+                    color="{{facecolor}}">
+                  </labs002-avatar-facepages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-glassespages 
+                    selected="{{glassesselected}}"
+                    color="{{glassescolor}}"
+                    nrofitems="{{nrofglasses}}">
+                  </labs002-avatar-glassespages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-beardpages 
+                    selected="{{beardselected}}"
+                    color="{{beardcolor}}"
+                    nrofitems="{{nrofbeard}}">
+                  </labs002-avatar-beardpages>
+                </div>
+                <div class="absolutepos">
+                  <labs002-avatar-snitpages
+                    selected="{{snitselected}}"
+                    color="{{snitcolor}}"
+                  nrofitems="{{nrofsnit}}">
+                  </labs002-avatar-snitpages>
+                </div>
+                <div class="absolutepos">
+                  <div class="navlayer layout horizontal center-center">
+                    <lo-configbtns on-tap="previous" id="previous"></lo-configbtns>
+                    <button on-tap="toggleAvataredit">hier</button>
+                    <lo-configbtns next on-tap="next" id="next"></lo-configbtns>
+                 </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="avataredit">
+              <iron-collapse id="avataredit" opened="{{avataropen}}">
+                <lo-colorpicker
+                  on-color-changed="_selectedcolor"
+                  kleurtje="{{kleurtje}}">
+                </lo-colorpicker>
+                <div class="itemselector">
+                  <iron-selector id="itemselector" attr-for-selected="context" selected="lijf" on-iron-select="passItem">
+                    <div class="item" context="lijf">
+                      <img src="../../images/lijf.svg">
+                    </div>
+                    <div class="item" context="beard">
+                      <img src="../../images/beard.svg">
+                    </div>         
+                    <div class="item" context="glasses">
+                      <img src="../../images/glasses.svg">
+                    </div>
+                    <div class="item" context="snit">
+                      <img src="../../images/snit.svg">
+                    </div>            
+                    <div class="item" context="top">
+                      <img src="../../images/top.svg">
+                    </div>
+                    <div class="item" context="bottom">
+                      <img src="../../images/bottom.svg">
+                    </div>      
+                    <div class="item" context="shoes">
+                      <img src="../../images/shoes.svg">
+                    </div>
+                    <div class="item" context="backing">
+                      <img src="../../images/backing.svg">
+                    </div>              
+                  </iron-selector>
+                </div>
+              </iron-collapse>
+            </div>     
+            <div class="valuesbox" on-tap="toggleValuesedit">
+              <div class="values">
+                <p><span>{{firstvalue}}</span></p>    
+                <iron-collapse id="valuesedit">
+                  <template is="dom-repeat" items="{{previewdata}}">
+                    <p><span>{{item}}</span><span>{{item.value}}</span></p>
+                  </template>
+                  <button class="lockedbtn" on-tap="toEdit">
+                    <img src="../../images/locked.svg">
+                  </button>
+                </iron-collapse>
+              </div>
+            </div>
+
+            <lo-peers peers="{{objectpeers}}" peersneeded="{{objectpeersneeded}}" on-go-back="_toBack" valcolor="var(--primary-green)"></lo-peers>
+          </div>  
+      </section>
+
+      <section key="dataedit">
+        <h1>DATA EDIT</h1>  
+      </section>
+    </iron-pages>
   </template>
 
 </dom-module>
@@ -61,32 +350,11 @@ Example:
        * `fancy` indicates that the element should don a monocle and tophat,
        * while checking its pocket watch.
        */
-      fancy: Boolean,
-
-      /**
-       * Describes the author of the element, but is really just an excuse to
-       * show off JSDoc annotations.
-       *
-       * @type {{name: string, image: string}}
-       */
-      author: {
-        type: Object,
-        // Use `value` to provide a default value for a property, by setting it
-        // on your element's prototype.
-        //
-        // If you provide a function, as we do here, Polymer will call that
-        // _per element instance_.
-        //
-        // We do that to ensure that each element gets its own copy of the
-        // value, rather than having it shared across all instances (via the
-        // prototype).
-        value: function() {
-          return {
-            name:  'Dimitri Glazkov',
-            image: 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg',
-          };
-        }
-      },
+      modus: {
+        type: String,
+        observer: '_modus',
+        value: 'view'
+      }
 
     },
 
@@ -99,6 +367,203 @@ Example:
       //
       // This is the point where you should make modifications to the DOM (when
       // necessary), or kick off any processes the element wants to perform.
+      this.backing_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarbacking1-02.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarbacking1-02.png')
+        }
+      };
+      this.beard_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarbeard1-02.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarbeard2-02.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/avatarbeard3-02.png')
+        },
+        4: {
+          url: this.resolveUrl('images/avatar/avatarbeard4-02.png')
+        },
+        5: {
+          url: this.resolveUrl('images/avatar/avatarbeard5-02.png')
+        },
+        6: {
+          url: this.resolveUrl('images/avatar/avatarbeard6-02.png')
+        },
+        7: {
+          url: this.resolveUrl('images/avatar/avatarbeard7-02.png')
+        }
+      };
+      this.bottom_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/avatarbottom1-02.png')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarbottom2-05.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarbottom3-03.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/avatarbottom1-01.png')
+        }
+      };
+      this.face_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/avatarface-01.png')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/jenny_face.png')
+        }
+      }
+      this.glasses_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarglasses1-08.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarglasses1-07.png')
+        }
+      };
+      this.head_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/avatarhead-01.png')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarhead-03.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarhead-04.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/jenny_head.png')
+        }
+      };
+      this.body_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/avatarlijf-01.png')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarlijf-03.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarlijf-04.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/jenny-lijf.png')
+        }
+      }
+      this.shoe_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarshoes1-04.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarshoes3-02.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/avatarshoes1-07.png')
+        },
+        4: {
+          url: this.resolveUrl('images/avatar/jenny_shoes.png')
+        }
+      };
+      this.snit_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatarsnit1-08.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatarsnit3-04.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/avatarsnit3-08.png')
+        },
+        4: {
+          url: this.resolveUrl('images/avatar/avatarsnit4-08.png')
+        },
+        5: {
+          url: this.resolveUrl('images/avatar/avatarsnit5-08.png')
+        },
+        6: {
+          url: this.resolveUrl('images/avatar/avatarsnit6-08.png')
+        },
+        7: {
+          url: this.resolveUrl('images/avatar/avatarsnit7-08.png')
+        },
+        8: {
+          url: this.resolveUrl('images/avatar/jenny_snit.png')
+        }
+      };
+      this.top_tiles = {
+        0: {
+          url: this.resolveUrl('images/avatar/empty.svg')
+        },
+        1: {
+          url: this.resolveUrl('images/avatar/avatartop1-08.png')
+        },
+        2: {
+          url: this.resolveUrl('images/avatar/avatartop4-05.png')
+        },
+        3: {
+          url: this.resolveUrl('images/avatar/avatartop2-01.png')
+        },
+        4: {
+          url: this.resolveUrl('images/avatar/avatartop4-02.png')
+        },
+        5: {
+          url: this.resolveUrl('images/avatar/jenny_top.png')
+        }
+      };
+
+      this.backing_tile = this.backing_tiles[(this.objectconfig ? this.objectconfig.backing[0] : 0)].url;
+      this.beard_tile = this.beard_tiles[(this.objectconfig ? this.objectconfig.beard[0] : 1)].url;
+      this.bottom_tile = this.bottom_tiles[(this.objectconfig ? this.objectconfig.bottom[0] : 0)].url;
+      this.face_tile = this.face_tiles[(this.objectconfig ? this.objectconfig.face[0] : 0)].url;
+      this.glasses_tile = this.glasses_tiles[(this.objectconfig ? this.objectconfig.glasses[0] : 1)].url;
+      this.head_tile = this.head_tiles[(this.objectconfig ? this.objectconfig.head[0] : 0)].url;
+      this.body_tile = this.body_tiles[(this.objectconfig ? this.objectconfig.lijf[0] : 0)].url;
+      this.shoe_tile = this.shoe_tiles[(this.objectconfig ? this.objectconfig.shoes[0] : 1)].url;
+      this.snit_tile = this.snit_tiles[(this.objectconfig ? this.objectconfig.snit[0] : 1)].url;
+      this.top_tile = this.top_tiles[(this.objectconfig ? this.objectconfig.top[0] : 1)].url;
+
+
+      this.snitselected = 1;
+      this.snitcolor = 1;
+      this.glassesselected = 1;
+      this.glassescolor = 1;
+      this.beardselected = 1;
+      this.beardcolor = 1;
+      this.faceselected = 1;
+      this.facecolor = 1;
+      this.headselected = 1;
+      this.headcolor = 1;
+      this.topselected = 1;
+      this.topcolor = 1;
+      this.bottomselected = 1;
+      this.bottomcolor = 1;
+      this.shoesselected = 1;
+      this.shoescolor = 1;
+      this.lijfselected = 1;
+      this.lijfcolor = 1;
+      this.backingselected = 1;
+      this.backingcolor = 1;
     },
 
     attached: function() {
@@ -126,25 +591,50 @@ Example:
      * @detail {{sound: String}}
      */
 
-    /**
-     * Sometimes it's just nice to say hi.
-     *
-     * @param {string} greeting A positive greeting.
-     * @return {string} The full greeting.
-     */
-    sayHello: function(greeting) {
-      var response = greeting || 'Hello World!';
-      return 'locals-avatar says, ' + response;
-    },
+     _loadTheRest: function() {
+        var extraElements = [
+          this.resolveUrl('./labs002-avatar-snitpages.html'),
+          this.resolveUrl('./labs002-avatar-glassespages.html'),
+          this.resolveUrl('./labs002-avatar-beardpages.html'),
+          this.resolveUrl('./labs002-avatar-facepages.html'),
+          this.resolveUrl('./labs002-avatar-headpages.html'),
+          this.resolveUrl('./labs002-avatar-toppages.html'),
+          this.resolveUrl('./labs002-avatar-bottompages.html'),
+          this.resolveUrl('./labs002-avatar-shoespages.html'),
+          this.resolveUrl('./labs002-avatar-bodypages.html'),
+          this.resolveUrl('./labs002-avatar-backingpages.html'),
+//          this.resolveUrl('./labs002-skeletonpages.html'),
+//          this.resolveUrl('./labs002-skeletonheadbandpages.html')
+        ];
+        //        var self = this;
+        extraElements.forEach(function(el, index) {
+          if (!this.loadedElements) {
+            this.loadedElements = [];
+          }
+          if (!this.loadedElements[el]) {
+            this.loadedElements[el] = true;
+            setTimeout(function() {
+              Polymer.Base.importHref([el], function() {
+                // called when our import is fully loaded
+                // including any assets like CSS.
+                console.log('element loaded: ', index, el);
+              }, function(e) {
+                // called when our import is fully loaded
+                // including any assets like CSS.
+                console.log('element loading error', el, e);
+              }, true);
+            }, index * 100);
+          } else {
+            console.log(el, ' already loaded..');
+          }
+        });
+      },
 
-    /**
-     * Attempt to destroy this element's enemies with a beam of light!
-     *
-     * Or, at least, dispatch an event in the vain hope that someone else will
-     * do the zapping.
-     */
-    fireLasers: function() {
-      this.fire('locals-avatar-lasers', {sound: 'Pew pew!'});
+    _modus: function(){
+      console.log(this.modus);
+      if(this.modus=='avedit'){
+        this._loadTheRest();
+      };
     }
 
   });

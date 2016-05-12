@@ -18,29 +18,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body unresolved>
 
-    <p>An example of <code>&lt;locals-avatar&gt;</code>:</p>
+    <p>Locals-avatar in view mode</p>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+    <locals-avatar modus="view"></locals-avatar>
 
-    <locals-avatar author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-      <h2>Hello locals-avatar</h2>
-    </locals-avatar>
+    <p>Locals-avatar in avataredit mode</p>
+
+    <locals-avatar modus="avedit"></locals-avatar>
+
+    <p>Locals-avatar in data edit mode</p>
+
+    <locals-avatar modus="dataedit"></locals-avatar>
 
     <script>
       var seedElement = document.querySelector('locals-avatar');
       
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-      
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-      
-      document.addEventListener("locals-avatar-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
       
     </script>
 
